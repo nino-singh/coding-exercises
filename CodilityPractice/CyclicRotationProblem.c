@@ -1,7 +1,7 @@
 #include "CyclicRotationProblem.h"
 
 /** Helper Function Declarations **/
-//static void leftRotateByOne(int A[], int N);
+static void rightRotateByOne(int A[], int N);
 
 /**
 * Solution to the Cyclic Rotation Problem.
@@ -16,9 +16,9 @@ void doCyclicRotation(int A[], int N, int K)
 }
 
 /**
-* Left Rotate all elements by one
+* Right Rotate all elements by one
 */
-void rightRotateByOne(int A[], int N)
+static void rightRotateByOne(int A[], int N)
 {
   //Save last element of array
   int tempElement = A[N-1];

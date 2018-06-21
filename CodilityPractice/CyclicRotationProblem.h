@@ -13,7 +13,6 @@ typedef struct
 }RotateResults;
 
 /** Function Declarations **/
-void rightRotateByOne(int A[], int N);
 void doCyclicRotation(int A[], int N, int K);
 
 #ifdef __cplusplus
