@@ -5,13 +5,6 @@
 extern "C" {
 #endif
 
-/** Definition of results struct **/
-typedef struct
-{
-  int *A; //Pointer to array of ints
-  int N; //Length of array A
-}RotateResults;
-
 /** Function Declarations **/
 void doCyclicRotation(int A[], int N, int K);
 
