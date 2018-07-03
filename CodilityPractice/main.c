@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "CyclicRotationProblem.h"
 #include "OddOccurrenceInArray.h"
+#include "FrogJmp.h"
 
 /** Definitions **/
 #define DEFAULT_ARR_SIZE  5
@@ -43,6 +44,10 @@ int main()
   printArray(A4,7);
   printf("Solution 1: %d\n", findOddOccurrencesInArray1(A4,7));
   printf("Solution 2: %d\n",findOddOccurrencesInArray2(A4,7));
+
+  printf("**** Minimum number of Jumps from X to Y ****\n");
+  printf("Min Jumps: %d\n",findMinJumps(10,85,30));
+
 
   return 0;
 }
