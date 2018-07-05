@@ -3,6 +3,7 @@
 #include "CyclicRotationProblem.h"
 #include "OddOccurrenceInArray.h"
 #include "FrogJmp.h"
+#include "FindMissingElem.h"
 
 /** Definitions **/
 #define DEFAULT_ARR_SIZE  5
@@ -45,9 +46,12 @@ int main()
   printf("Solution 1: %d\n", findOddOccurrencesInArray1(A4,7));
   printf("Solution 2: %d\n",findOddOccurrencesInArray2(A4,7));
 
-  printf("**** Minimum number of Jumps from X to Y ****\n");
+  printf("\n**** Minimum number of Jumps from X to Y ****\n");
   printf("Min Jumps: %d\n",findMinJumps(10,85,30));
 
+  printf("\n**** Find missing number ****\n");
+  int A5[4] = {2, 3, 1, 5};
+  printf("Missing num is: %d\n", findMissingNumber(A5,4));
 
   return 0;
 }
