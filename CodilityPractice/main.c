@@ -4,6 +4,7 @@
 #include "OddOccurrenceInArray.h"
 #include "FrogJmp.h"
 #include "FindMissingElem.h"
+#include "TapeEquilibrium.h"
 
 /** Definitions **/
 #define DEFAULT_ARR_SIZE  5
@@ -52,6 +53,10 @@ int main()
   printf("\n**** Find missing number ****\n");
   int A5[4] = {2, 3, 1, 5};
   printf("Missing num is: %d\n", findMissingNumber(A5,4));
+
+  printf("\n**** Find Min Difference between Parts ****\n");
+  int A6[5] = {3, 1, 2, 4,3};
+  printf("Min Diff is: %d\n", findMinDifferenceOfParts(A6,5));
 
   return 0;
 }
