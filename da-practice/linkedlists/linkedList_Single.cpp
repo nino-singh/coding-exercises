@@ -1,36 +1,82 @@
 #include "linkedList_Single.h"
-#include <iostream>
-using namespace std;
 
-int main()
+/* print nodes of linked list */
+void ll_print(struct Node *n)
 {
-  cout << "Creating singly listed list\n";
-
-  struct Node *head = NULL;
-  struct Node *n1 = NULL;
-  struct Node *n2 = NULL;
-  struct Node *n3 = NULL;
-
-  head = (struct Node*)malloc(sizeof(struct Node));
-  n1 = (struct Node*)malloc(sizeof(struct Node));
-  n2 = (struct Node*)malloc(sizeof(struct Node));
-  n3 = (struct Node*)malloc(sizeof(struct Node));
-
-  head->next = n1;
-  head->data = 0;
-  n1->next = n2;
-  n1->data = 1;
-  n2->next = n3;
-  n2->data = 2;
-  n3->next = NULL;
-  n3->data = 3;
-
-  struct Node *iter = head;
-  while(iter != NULL)
+  printf("---- Linked List ----\n");
+  while(n != NULL)
   {
-    printf("LL data: %d\n", iter->data);
-    iter = iter->next;
+    printf("LL node: %d\n", n->data);
+    n = n->next;
   }
-
-  return 0;
 }
+
+/* Add node after given node */
+void ll_insert(struct Node **node_ref, int newData)
+{
+  struct Node *afterNode = *node_ref;
+  struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+  newNode->data = newData;
+  newNode->next = afterNode->next;
+  afterNode->next = newNode;
+}
+
+/* Add node to front of list
+* Make the head pointer, point to new node which is now n1
+*/
+void ll_prepend(struct Node **head_ref, int newData)
+{
+  struct Node *n = (struct Node *)malloc(sizeof(struct Node));
+
+  //Check if list is empty
+  if(*head_ref == NULL)
+  {
+    n->data = newData;
+    n->next = NULL;
+    *head_ref = n;
+  }
+  else
+  {
+    n->data = newData;
+    n->next = *head_ref;
+    *head_ref = n;
+  }
+}
+
+/* Add node to end of list */
+void ll_append(struct Node **head_ref, int newData)
+{
+  struct Node *n = (struct Node*)malloc(sizeof(struct Node));
+
+  if(*head_ref == NULL)
+  {
+    n->data = newData;
+    n->next = NULL;
+    *head_ref = n;
+  }
+  else
+  {
+    struct Node *iter = *head_ref;
+    while(iter->next != NULL)
+    {
+      iter = iter->next;
+    }
+    n->data = newData;
+    n->next = NULL;
+    iter->next = n;
+  }
+}
+
+// /* Remove node first node in list*/
+// void ll_remove(struct Node **head_ref)
+// {
+//
+// }
+
+// /* Remove node after given node in list */
+// void ll_remove(struct Node **head_ref, struct Node *n)
+// {
+//   return
+// }
+
+/* Remove node after given node in list */
