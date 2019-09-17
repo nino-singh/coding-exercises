@@ -34,7 +34,23 @@ void ll_remove(struct Node **head_ref, int key);
 void ll_removeAt(struct Node **head_ref, int pos);
 
 /* Get number of nodes in the list */
-void ll_length(struct Node **head_ref);
+int ll_length(struct Node **head_ref);
+
+/* Get Nth node from end of list */
+int ll_getNthFromEnd(struct Node **head_ref, int n);
+
+/* Get node in middle of the list */
+int ll_getMiddle_v1(struct Node **head_ref);
+
+/* Get node in middle of the list */
+int ll_getMiddle_v2(struct Node **head_ref);
+
+/* Get node in middle of the list */
+int ll_getFreqofNode(struct Node **head_ref, int key);
+
+/* Detect if loop is present in the linked list */
+unsigned int ll_isLoopPresent(struct Node **head_ref);
+
 
 #ifdef __cplusplus
 }
