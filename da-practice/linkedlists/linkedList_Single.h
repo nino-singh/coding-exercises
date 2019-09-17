@@ -27,11 +27,14 @@ void ll_prepend(struct Node **head_ref, int newData);
 /* Add node to end of list */
 void ll_append(struct Node **head_ref, int newData);
 
-// /* Remove node from front of list*/
-// void ll_remove(struct Node *head_ref);
-
 /* Remove node after given node in list */
-//void ll_remove(struct Node **head_ref, struct Node *n);
+void ll_remove(struct Node **head_ref, int key);
+
+/* Remove node at given position in list */
+void ll_removeAt(struct Node **head_ref, int pos);
+
+/* Get number of nodes in the list */
+void ll_length(struct Node **head_ref);
 
 #ifdef __cplusplus
 }

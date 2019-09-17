@@ -26,12 +26,20 @@ int main()
   n3->data = 3;
 
   ll_print(head);
+  printf("--- Prepend ---\n");
   ll_prepend(&head, 4);
   ll_print(head);
+  printf("--- Append ---\n");
   ll_append(&head, 5);
   ll_print(head);
+  printf("---- Insert ---\n");
   ll_insert(&n2, 66);
   ll_print(head);
-
+  printf("--- Delete node at pos 3 ---\n");
+  ll_removeAt(&head, 3);
+  ll_print(head);
+  printf("--- Delete node key 2---\n");
+  ll_remove(&head, 2);
+  ll_print(head);
   return 0;
 }

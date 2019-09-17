@@ -67,16 +67,59 @@ void ll_append(struct Node **head_ref, int newData)
   }
 }
 
-// /* Remove node first node in list*/
-// void ll_remove(struct Node **head_ref)
-// {
-//
-// }
-
-// /* Remove node after given node in list */
-// void ll_remove(struct Node **head_ref, struct Node *n)
-// {
-//   return
-// }
-
 /* Remove node after given node in list */
+void ll_remove(struct Node **head_ref, int key)
+{
+  struct Node *curr = *head_ref;
+  struct Node *prev = *head_ref;
+
+  if(curr != NULL && curr->data == key)
+  {
+    *head_ref = curr->next;
+    free(curr);
+    return;
+  }
+
+  while(curr != NULL && curr->data != key)
+  {
+    prev = curr;
+    curr=curr->next;
+  }
+
+  //Traversed entire list and key wasn't found, return
+  if(curr == NULL)
+  {
+    return;
+  }
+  prev->next = curr->next;
+  free(curr);
+
+}
+
+/* Remove node at given position in list */
+void ll_removeAt(struct Node **head_ref, int pos)
+{
+  struct Node *curr = *head_ref;
+  struct Node *prev = *head_ref;
+
+  if(pos == 0)
+  {
+      *head_ref = curr->next;
+      free(curr);
+      return;
+  }
+  for(int i = 0; i < pos; i++)
+  {
+    prev = curr;
+    curr = curr->next;
+  }
+
+  if(curr == NULL)
+  {
+    return;
+  }
+
+  prev->next = curr->next;
+  free(curr);
+
+}
