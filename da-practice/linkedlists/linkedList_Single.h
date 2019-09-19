@@ -8,6 +8,7 @@ extern "C" {
 #include <stdio.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include <math.h>
 
 struct Node
 {
@@ -48,9 +49,20 @@ int ll_getMiddle_v2(struct Node **head_ref);
 /* Get node in middle of the list */
 int ll_getFreqofNode(struct Node **head_ref, int key);
 
-/* Detect if loop is present in the linked list */
+/* Detect if loop is present in the linked list and return its length.*/
 unsigned int ll_isLoopPresent(struct Node **head_ref);
 
+/* Reverse the nodes of the linked list */
+void ll_reverse(struct Node **head_ref);
+
+/*Compare contents of two lists for equality */
+unsigned int ll_compare(struct Node **list1, struct Node **list2);
+
+/* Check if nodes in list are a palindrome */
+int ll_isPalindrome(struct Node **head_ref);
+
+/*Remove duplicates from list */
+void ll_removeDuplicates(struct Node **head_ref);
 
 #ifdef __cplusplus
 }

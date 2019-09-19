@@ -7,39 +7,27 @@ int main()
   cout << "Creating singly linked list\n";
 
   struct Node *head = NULL;
-  struct Node *n1 = NULL;
-  struct Node *n2 = NULL;
-  struct Node *n3 = NULL;
 
-  head = (struct Node*)malloc(sizeof(struct Node));
-  n1 = (struct Node*)malloc(sizeof(struct Node));
-  n2 = (struct Node*)malloc(sizeof(struct Node));
-  n3 = (struct Node*)malloc(sizeof(struct Node));
-
-  head->next = n1;
-  head->data = 0;
-  n1->next = n2;
-  n1->data = 1;
-  n2->next = n3;
-  n2->data = 2;
-  n3->next = NULL;
-  n3->data = 3;
-
-
-  ll_print(head);
-  printf("--- Prepend ---\n");
-  ll_prepend(&head, 4);
-  ll_print(head);
-
-  printf("--- Append ---\n");
+  printf("--- Append new nodes to list ---\n");
+  ll_append(&head, 1);
+  ll_append(&head, 2);
+  ll_append(&head, 3);
+  ll_append(&head, 4);
   ll_append(&head, 5);
   ll_append(&head, 6);
-  ll_append(&head, 7);
-  ll_append(&head, 8);
+
+  ll_print(head);
+
+  printf("--- Get middle node ----\n");
+  printf("Data is: %d\n", ll_getMiddle_v2(&head));
+  ll_print(head);
+
+  printf("--- Prepend ---\n");
+  ll_prepend(&head, 50);
   ll_print(head);
 
   printf("---- Insert ---\n");
-  ll_insert(&n2, 66);
+  ll_insert(&head->next->next->next, 66);
   ll_print(head);
 
   printf("--- Delete node at pos 3 ---\n");
@@ -61,16 +49,66 @@ int main()
   ll_print(head);
 
   //Create loop for testing
-  head->next->next->next->next = head;
+  head->next->next->next->next->next = head->next->next;
   printf("--- Detect loop ---");
-  if(ll_isLoopPresent(&head))
+  int loopLen = ll_isLoopPresent(&head);
+  if(loopLen)
   {
-    printf("Loop detected!\n");
+    printf("Loop detected: %d nodes in length\n", loopLen);
   }
   else {
     printf("No loop\n");
   }
 
+  struct Node *list2 = (struct Node*)malloc(sizeof(struct Node));
+  list2 = NULL;
+
+  //Create palidrome with even number of nodes for test
+  ll_append(&list2, 60);
+  ll_append(&list2, 1);
+  ll_append(&list2, 4);
+  ll_append(&list2, 1);
+  ll_append(&list2, 60);
+  ll_print(list2);
+
+  printf("Is palindrome? : %d\n", ll_isPalindrome(&list2));
+  ll_print(list2);
+
+  //Create palindrome with odd number of nodes for test
+  struct Node *list3 = (struct Node*)malloc(sizeof(struct Node));
+  list3 = NULL;
+
+  ll_append(&list3, 10);
+  ll_append(&list3, 3);
+  ll_append(&list3, 4);
+  ll_append(&list3, 1);
+  ll_append(&list3, 4);
+  ll_append(&list3, 3);
+  ll_append(&list3, 10);
+  ll_print(list3);
+
+  printf("Is palindrome? : %d\n", ll_isPalindrome(&list3));
+
+  //Create palindrome with odd number of nodes for test
+  struct Node *list4 = (struct Node*)malloc(sizeof(struct Node));
+  list4 = NULL;
+
+  ll_append(&list4, 1);
+  ll_append(&list4, 3);
+  ll_append(&list4, 4);
+  ll_append(&list4, 4);
+  ll_append(&list4, 6);
+  ll_append(&list4, 7);
+  ll_append(&list4, 10);
+  ll_append(&list4, 10);
+  ll_append(&list4, 12);
+  ll_print(list4);
+
+  printf("Is palindrome? : %d\n", ll_isPalindrome(&list4));
+
+  printf("--- Remove Duplicates ---\n");
+  ll_removeDuplicates(&list4);
+  ll_print(list4);
 
   return 0;
 }

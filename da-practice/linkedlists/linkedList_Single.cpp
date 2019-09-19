@@ -206,22 +206,154 @@ unsigned int ll_isLoopPresent(struct Node **head_ref)
 {
   struct Node *fast = *head_ref;
   struct Node *slow = *head_ref;
-  unsigned int isLoop = 0;
+  struct Node *loopBegin = NULL;
+//  unsigned int isLoop = 0;
+  unsigned int loopLen = 0;
 
   while(slow != NULL && fast != NULL && fast->next != NULL)
   {
+
     fast = fast->next->next;
     slow = slow->next;
 
     if(slow == fast)
     {
-      isLoop = 1;
-      return isLoop;
+      loopBegin = slow;
+      slow=slow->next;
+      loopLen++;
+
+      while(loopBegin != slow)
+      {
+        loopLen++;
+        slow=slow->next;
+      }
+
+      return loopLen;
     }
   }
 
-  isLoop = 0;
+  return loopLen;
+}
 
-  return isLoop;
+/* Reverse the nodes of the linked list */
+void ll_reverse(struct Node **head_ref)
+{
+  //Initialize three pointers
+  struct Node *prev = NULL;
+  struct Node *curr = *head_ref;
+  struct Node *next = NULL;
 
+  /*Always keep track of head which points to prev since this is now three
+  first node in the list*/
+
+  /* Make sure to save current's next before you make curr next equal to prev
+  You're basically iterating through and reversing each link to point in the
+  opposite direction */
+
+  while(curr != NULL)
+  {
+    //Save current's next so we can increment forward
+    next = curr->next;
+
+    //Reverse the link so that current's next is now previous
+    curr->next = prev;
+
+    //Move pointers one position ahead
+    prev = curr;
+    curr = next;
+  }
+  *head_ref = prev;
+}
+
+/*Compare contents of two lists for equality */
+unsigned int ll_compare(struct Node **list1, struct Node **list2)
+{
+  struct Node *iter1 = *list1;
+  struct Node *iter2 = *list2;
+  unsigned int res = 1;
+
+  while(iter1 != NULL && iter2 != NULL)
+  {
+    if(iter1->data != iter2->data)
+    {
+      return 0;
+    }
+    iter1=iter1->next;
+    iter2=iter2->next;
+  }
+
+  //At this point they must both be null if lists are identical
+  return (iter1 == NULL && iter2 == NULL);
+}
+
+/* Check if nodes in list are a palindrome */
+int ll_isPalindrome(struct Node **head_ref)
+{
+
+  //Find middle position
+  struct Node *slow = *head_ref;
+  struct Node *fast = *head_ref;
+  int pos = 1;
+
+  while(fast != NULL && fast->next != NULL)
+  {
+    slow = slow->next;
+    fast = fast->next->next;
+    pos++;
+  }
+  //Save middle node
+  struct Node *midNode = slow;
+
+  struct Node *second_half = NULL;
+  struct Node *first_half = *head_ref;
+
+  //Check if length of list is odd, and find second half
+  //If list is odd, don't include midNode in second half of list
+  if((pos*2) % 2)
+  {
+    second_half = midNode->next;
+  }
+  else{
+    second_half = midNode;
+  }
+
+  //Reverse second half
+  ll_reverse(&second_half);
+
+  unsigned int isPalindrome = 0;
+
+  //Compare first and second half of list for equality
+  isPalindrome = ll_compare(&first_half, &second_half);
+
+  ll_reverse(&second_half);
+
+  return isPalindrome;
+}
+
+/*Remove duplicates from list */
+void ll_removeDuplicates(struct Node **head_ref)
+{
+  struct Node *curr = *head_ref;
+  struct Node *next = curr->next;
+  struct Node *saved = NULL;
+
+  while(next != NULL)
+  {
+    if(curr->data == next->data)
+    {
+      //save current's next so we can delete it
+      saved = next;
+      //Make current's next equal to next next
+      curr->next = next->next;
+      free(next);
+
+      //Move pointers up one
+      curr = curr->next;
+      next = curr->next;
+    }
+    else {
+      curr = curr->next;
+      next = next->next;
+    }
+  }
 }
