@@ -333,6 +333,10 @@ int ll_isPalindrome(struct Node **head_ref)
 /*Remove duplicates from list */
 void ll_removeDuplicates(struct Node **head_ref)
 {
+
+  //If list is unsorted
+  //Sort the list first using Merge sort
+
   struct Node *curr = *head_ref;
   struct Node *next = curr->next;
   struct Node *saved = NULL;
@@ -356,4 +360,56 @@ void ll_removeDuplicates(struct Node **head_ref)
       next = next->next;
     }
   }
+}
+
+/*Swap two nodes in list */
+void ll_swapNodes(struct Node **head_ref, int keyA, int keyB)
+{
+
+  //Find the two nodes that will be swapped
+  struct Node *prevA = NULL;
+  struct Node *currA = NULL;
+  struct Node *prevB = NULL;
+  struct Node *currB = NULL;
+
+  currA = *head_ref;
+  while(currA->data != keyA && currA != NULL)
+  {
+    prevA = currA;
+    currA = currA->next;
+  }
+
+  currB = *head_ref;
+  while(currB->data != keyB && currB != NULL)
+  {
+    prevB = currB;
+    currB = currB->next;
+  }
+
+  //Save B's next node
+  struct Node *nextB = currB->next;
+
+ //Check if A is head node
+  if(prevA == NULL && currA == *head_ref)
+  {
+    *head_ref = currB;
+  }
+  else
+  {
+    prevA->next = currB;
+  }
+
+  //Check if B is head node
+   if(prevB == NULL && currB == *head_ref)
+   {
+     *head_ref = currA;
+   }
+   else
+   {
+     prevB->next = currA;
+   }
+
+  currB->next = currA->next;
+  currA->next = nextB;
+
 }

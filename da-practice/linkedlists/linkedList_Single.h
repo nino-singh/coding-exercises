@@ -64,6 +64,9 @@ int ll_isPalindrome(struct Node **head_ref);
 /*Remove duplicates from list */
 void ll_removeDuplicates(struct Node **head_ref);
 
+/*Swap two nodes in list */
+void ll_swapNodes(struct Node **head_ref, int keyA, int keyB);
+
 #ifdef __cplusplus
 }
 #endif

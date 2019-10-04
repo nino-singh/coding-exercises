@@ -110,5 +110,9 @@ int main()
   ll_removeDuplicates(&list4);
   ll_print(list4);
 
+  printf("---- Swap nodes 4 and 10 ----\n");
+  ll_swapNodes(&list4, 4, 10);
+  ll_print(list4);
+  
   return 0;
 }
