@@ -1,8 +1,8 @@
-#include "linkedList_Single.h"
+#include "ll_practice.h"
 #include <iostream>
 using namespace std;
 
-int main()
+void run_llSinglePractice()
 {
   cout << "Creating singly linked list\n";
 
@@ -113,6 +113,31 @@ int main()
   printf("---- Swap nodes 4 and 10 ----\n");
   ll_swapNodes(&list4, 4, 10);
   ll_print(list4);
-  
-  return 0;
+
+}
+void run_llDoublePractice()
+{
+  printf("-- Prepend double linked list ---\n");
+  struct DNode* list = NULL;
+  lld_prepend(&list, 1);
+  lld_prepend(&list, 2);
+  lld_prepend(&list, 3);
+  lld_prepend(&list, 14);
+  lld_prepend(&list, 16);
+
+  lld_print(list);
+
+  printf("-- Append double linked list ---\n");
+  struct DNode* list2 = NULL;
+  lld_append(&list2, 1);
+  lld_append(&list2, 2);
+  lld_append(&list2, 3);
+  lld_append(&list2, 4);
+  lld_append(&list2, 5);
+
+  lld_print(list2);
+
+ printf("-- Insert after, double linked list ---\n");
+  lld_insertAfter(&list2->next->next->next, 555);
+  lld_print(list2);
 }
