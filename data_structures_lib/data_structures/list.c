@@ -5,7 +5,22 @@
 //Get the data of an item in the list specified by index
 void * list_get(List *list, int index)
 {
+  ListNode *iter = list->head;
 
+  if((index > list->listLen) || index < 0)
+  {
+    return NULL;
+  }
+  else
+  {
+    int i = 0;
+    while(iter != NULL && i != index)
+    {
+      iter = iter->next;
+      i++;
+    }
+  }
+  return iter->data;
 }
 
 //Add item to end of the list
@@ -45,11 +60,50 @@ void list_prepend(List *list, void *data)
       node->next = list->head;
       list->head = node;
   }
+  list->listLen++;
 }
 
 //Insert item at index position in the list
-void list_insert(List *list, int index)
+void list_insert(List *list, void *data, int index)
 {
+  printf("%d\n", list->listLen);
+  if((index > list->listLen) || index < 0)
+  {
+    return;
+  }
+  else if(index == 0)
+  {
+    ListNode *node = (ListNode*)malloc(sizeof(ListNode));
+    node->data = data;
+    node->next = list->head;
+    list->head = node;
+    list->listLen++;
+  }
+  else if(index == list->listLen-1)
+  {
+    ListNode *node = (ListNode*)malloc(sizeof(ListNode));
+    node->data = data;
+    node->next = NULL;
+    list->tail->next = node;
+    list->tail = node;
+    list->listLen++;
+  }
+  else
+  {
+    int i=0;
+    ListNode *iter = list->head;
+    while(iter != NULL && i != index-1)
+    {
+      iter = iter->next;
+      i++;
+    }
+    ListNode *node = (ListNode*)malloc(sizeof(ListNode));
+    node->data = data;
+    ListNode *oldNext = iter->next;
+    iter->next = node;
+    node->next = oldNext;
+    list->listLen++;
+  }
 
 }
 
@@ -75,11 +129,14 @@ int list_size(List *list)
 void list_print(List *list, void (*printFn)(void *))
 {
   ListNode *node = list->head;
+  int i = 0;
   while(node != NULL)
   {
+    printf("(%d): ", i);
     (*printFn)(node->data);
     printf("\n");
     node = node->next;
+    i++;
   }
 
 }

@@ -6,7 +6,9 @@
 
 void printStringNode(void * s)
 {
-  printf("%s ", (char *) s);
+  static int i = 0;
+  printf("%s ,",(char *) s);
+  i++;
 }
 
 void run_list_tests()
@@ -38,6 +40,18 @@ void run_list_tests()
   printf("--Prepend artists to list ---\n");
   list_prepend(artistList, nameMs);
   list_prepend(artistList, nameDp);
+  list_print(artistList, printStringNode);
+
+  printf("--- Get node ----\n");
+  char * retrieved1 = (char*) list_get(artistList, 3);
+  printf("Got node 3: %s\n", retrieved1);
+
+  char * retrieved2 = (char*) list_get(artistList, 1);
+  printf("Got node 1: %s\n", retrieved2);
+
+  printf("--- Insert node at index 3 ----\n");
+  char insertArtist[] = "insertedArist";
+  list_insert(artistList, insertArtist, 6);
   list_print(artistList, printStringNode);
 
 }

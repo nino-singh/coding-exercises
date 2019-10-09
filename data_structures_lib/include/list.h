@@ -10,13 +10,13 @@ extern "C" {
 #include <string.h>
 
 /** List node definition **/
-typedef struct _listnode {
+typedef struct _ListNode {
   void *data;
-  struct _listnode * next;
+  struct _ListNode * next;
 }ListNode;
 
 /** Single linked list definition **/
-typedef struct _list {
+typedef struct _List {
   int listLen;
   int elementSize;
   ListNode *head;
@@ -36,7 +36,7 @@ void list_append(List *list, void *data);
 void list_prepend(List *list, void *data);
 
 //Insert item at index position in the list
-void list_insert(List *list, int index);
+void list_insert(List *list, void *data, int index);
 
 //Remove item at index position
 void list_remove(List *list, int index);
@@ -57,7 +57,7 @@ typedef enum
   LIST_DOUBLE
 }ListType;
 
-//Print nodes in the list 
+//Print nodes in the list
 void list_print(List *list, void (*printFn)(void *));
 
 #ifdef __cplusplus
