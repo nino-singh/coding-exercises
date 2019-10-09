@@ -51,8 +51,21 @@ void run_list_tests()
 
   printf("--- Insert node at index 3 ----\n");
   char insertArtist[] = "insertedArist";
-  list_insert(artistList, insertArtist, 6);
+  list_insert(artistList, insertArtist, 3);
   list_print(artistList, printStringNode);
+
+  printf("---- Remove node 3 from list ---\n");
+  list_remove(artistList, 3);
+  list_print(artistList, printStringNode);
+
+  printf("---- Remove head from list ---\n");
+  list_remove(artistList, 0);
+  list_print(artistList, printStringNode);
+
+  printf("---- Remove tail from list ---\n");
+  list_remove(artistList, artistList->listLen-1);
+  list_print(artistList, printStringNode);
+
 
 }
 

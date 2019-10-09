@@ -47,16 +47,6 @@ int list_search(List *list, void *data);
 //Return the number of elements in the list in bytes
 int list_size(List *list);
 
-typedef enum
-{
-  LIST_STRINGS,
-  LIST_CHAR,
-  LIST_INT32,
-  LIST_INT16,
-  LIST_FLOAT,
-  LIST_DOUBLE
-}ListType;
-
 //Print nodes in the list
 void list_print(List *list, void (*printFn)(void *));
 

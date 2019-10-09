@@ -66,7 +66,6 @@ void list_prepend(List *list, void *data)
 //Insert item at index position in the list
 void list_insert(List *list, void *data, int index)
 {
-  printf("%d\n", list->listLen);
   if((index > list->listLen) || index < 0)
   {
     return;
@@ -110,7 +109,45 @@ void list_insert(List *list, void *data, int index)
 //Remove item at index position
 void list_remove(List *list, int index)
 {
+  if((index > list->listLen) || index < 0)
+  {
+    return;
+  }
+  else if(index == 0)
+  {
+    ListNode *headNext = list->head->next;
+    ListNode *deleteNode = list->head;
+    free(deleteNode);
+    list->head = headNext;
+    list->listLen--;
+  }
+  else if(index == list->listLen-1)
+  {
+    ListNode *deleteNode = list->tail;
+    ListNode *iter = list->head;
 
+    for(int i=0; i<index-1; i++)
+    {
+      iter = iter->next;
+    }
+    iter->next = NULL;
+    list->tail = iter;
+    free(deleteNode);
+    list->listLen--;
+  }
+  else
+  {
+    ListNode *iter = list->head;
+
+    for(int i=0; i<index-1; i++)
+    {
+      iter = iter->next;
+    }
+    ListNode *deleteNode = iter->next;
+    iter->next = deleteNode->next;
+    free(deleteNode);
+    list->listLen--;
+  }
 }
 
 //Return first occurence of the data if its found in list
