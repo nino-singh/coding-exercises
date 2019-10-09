@@ -31,7 +31,20 @@ void list_append(List *list, void *data)
 //Add item to front of the list
 void list_prepend(List *list, void *data)
 {
+  ListNode *node = (ListNode *)malloc(sizeof(ListNode));
+  node->data = data;
+  node->next = NULL;
 
+  if(list->head == NULL)
+  {
+    list->head = node;
+    list->tail = node;
+  }
+  else
+  {
+      node->next = list->head;
+      list->head = node;
+  }
 }
 
 //Insert item at index position in the list
@@ -52,10 +65,10 @@ int list_search(List *list, void *data)
   return -1;
 }
 
-//Return the number of elements in the list in bytes
+//Return the number of elements in the list
 int list_size(List *list)
 {
-  return -1;
+  return list->listLen;
 }
 
 //Print nodes in the list

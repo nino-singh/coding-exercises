@@ -32,6 +32,14 @@ void run_list_tests()
   list_append(artistList, nameMl);
   list_print(artistList, printStringNode);
 
+  char nameMs[] = "Mustafa Sandal";
+  char nameDp[] = "DJ Project";
+
+  printf("--Prepend artists to list ---\n");
+  list_prepend(artistList, nameMs);
+  list_prepend(artistList, nameDp);
+  list_print(artistList, printStringNode);
+
 }
 
 #endif
