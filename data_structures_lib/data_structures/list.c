@@ -150,10 +150,23 @@ void list_remove(List *list, int index)
   }
 }
 
-//Return first occurence of the data if its found in list
+//Return index of the first occurence of the data if its found in list
 int list_search(List *list, void *data)
 {
-  return -1;
+  ListNode *iter = list->head;
+  int i = 0;
+  int index = -1;
+  while(iter != NULL && memcmp(iter->data, data, list->elementSize))
+  {
+    iter = iter->next;
+    i++;
+  }
+
+  if(iter)
+  {
+    index = i;
+  }
+  return index; 
 }
 
 //Return the number of elements in the list
