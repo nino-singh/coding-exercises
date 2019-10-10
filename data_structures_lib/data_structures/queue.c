@@ -7,7 +7,7 @@ void queue_add(Queue *q, void *data)
 }
 
 //Remove element from front and return head of queue
-void queue_remove(Queue *q)
+void * queue_remove(Queue *q)
 {
   list_remove(q->list, 0);
   return queue_peek(q);

@@ -1,15 +1,8 @@
 #ifndef __LISTTESTS_H__
 #define __LISTTESTS_H__
 
-#include <stdio.h>
+#include "include/common.h"
 #include "include/list.h"
-
-void printStringNode(void * s)
-{
-  static int i = 0;
-  printf("%s ,",(char *) s);
-  i++;
-}
 
 void run_list_tests()
 {
@@ -66,7 +59,27 @@ void run_list_tests()
   list_remove(artistList, artistList->listLen-1);
   list_print(artistList, printStringNode);
 
+  printf("---- Find Mashrou Leila in list ---\n");
+  int index = list_search(artistList, nameMl);
+  if( index < 0)
+  {
+    printf("Mashrou Leila not found.\n");
+  }
+  else
+  {
+    printf("Mashrou Leila found at index %d\n", index);
+  }
 
+  printf("---- Find Carlos Vives in list ---\n");
+  int idx = list_search(artistList, nameCv);
+  if( idx < 0)
+  {
+    printf("Carlos Vives not found.\n");
+  }
+  else
+  {
+    printf("Carlos Vives found at index %d\n", idx);
+  }
 }
 
 #endif
