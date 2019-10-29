@@ -10,7 +10,7 @@ void stack_push(Stack *s, void * data)
 void * stack_pop(Stack *s)
 {
   list_remove(s->list, 0);
-  return s->list->head; 
+  return s->list->head;
 }
 
 //Get size of stack

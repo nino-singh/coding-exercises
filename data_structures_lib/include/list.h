@@ -26,6 +26,9 @@ typedef struct _List {
 
 /*** List interface functions***/
 
+//Create list
+List* list_create(size_t elementSize);
+
 //Get the data of an item in the list specified by index
 void * list_get(List *list, int index);
 

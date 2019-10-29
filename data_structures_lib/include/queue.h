@@ -11,6 +11,8 @@ typedef struct _Queue {
   List *list;
 }Queue;
 
+Queue* queue_create(size_t elementSize)
+
 //Add element to back
 void queue_add(Queue *q, void * data);
 

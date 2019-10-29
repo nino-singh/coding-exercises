@@ -1,5 +1,14 @@
 #include "../include/queue.h"
 
+Queue* queue_create(size_t elementSize)
+{
+  List *list = list_create(elementSize);
+  Queue *q = (Queue*)malloc(sizeof(Queue));
+  q->list = list;
+
+  return q;
+}
+
 //Add element to back
 void queue_add(Queue *q, void *data)
 {
