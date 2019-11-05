@@ -12,39 +12,46 @@ BtNode *btree_create_node(void*data)
 }
 
 //Insert a new node in the binary search tree
-void btree_insert(BtNode *root, void *key, void *data)
+//Traverse the tree in level order and insert node at first node
+//whose left or right child is NULL
+void btree_insert(BtNode *root, void *data)
 {
+  if(root == NULL)
+  {
+    return;
+  }
+  Queue *q = queue_create(sizeof(BtNode*));
+  queue_add(q, root);
 
+  while(queue_size(q) > 0)
+  {
+    BtNode *temp = (BtNode*)queue_peek(q);
+
+    if(temp->left == NULL) {
+      BtNode *b = btree_create_node(data);
+      temp->left = b;
+      break;
+    }
+    else {
+      queue_add(q,temp->left);
+    }
+
+    if(temp->right == NULL) {
+      BtNode *b = btree_create_node(data);
+      temp->right = b;
+      break;
+    }
+    else {
+      queue_add(q,temp->right);
+    }
+    queue_remove(q);
+  }
 }
 
 //Remove node with given key
-void btree_remove(BtNode *root, void *key)
+void btree_remove(BtNode *root, void *data)
 {
 
-}
-
-//Find node with given key an return data
-void *btree_retrieve(BtNode *root, void *key)
-{
-
-}
-
-//Check if node exists with given key
-bool btree_contains(BtNode *root, void *key)
-{
-
-}
-
-//Return number of nodes in tree
-int btree_size(BtNode *root)
-{
-
-}
-
-//Return true if tree is empty
-bool btree_isEmpty(BtNode *root)
-{
-  return false;
 }
 
 //Traverse (Root, left, right)
@@ -90,23 +97,25 @@ void btree_levelorder_print(BtNode *root, void (*printNode)(void *))
     return;
   }
 
-   Queue *q = queue_create(sizeof(int));
-
+   Queue *q = queue_create(sizeof(BtNode*));
    queue_add(q, root);
 
-   while(queue_size() > 0)
+   while(queue_size(q) > 0)
+  // while(temp)
    {
-     BtNode *node = (BtNode*)queue_peek();
-     (*printNode)(node->data);
-     queue_remove();
+     BtNode *temp = ((BtNode*)queue_peek(q));
+     (*printNode)(temp->data);
 
-     if(node->left != NULL) {
-         queue.add(node->left);
+     if(temp->left != NULL) {
+         queue_add(q, temp->left);
      }
 
-    if(node->right != NULL) {
-      queue.add(node->right);
+    if(temp->right != NULL) {
+      queue_add(q, temp->right);
     }
+
+    queue_remove(q);
+
    }
 
 }
