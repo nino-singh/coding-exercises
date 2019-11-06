@@ -6,10 +6,17 @@ extern "C" {
 #endif
 
 #include <stdio.h>
+#include <stdbool.h>
+
+typedef struct KeyValuePair_t {
+  void * key;
+  void * data;
+} KeyValuePair;
 
 void printStringNode(void * s);
 void printIntNode(void * num);
-
+void printKeyValueStringNode(void *kv);
+int compareInts(const void * a, const void * b);
 
 #ifdef __cplusplus
 }

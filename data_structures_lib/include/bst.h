@@ -21,14 +21,19 @@ typedef struct _bstNode {
 typedef struct _bstree {
   BstNode *root;
   int numNodes;
-  size_t elementSize;
-  bool (*compare)(const void*, const void*);
+  int (*compare)(const void*, const void*);
 }Bstree;
 
 //Create a new bst node
 BstNode *create_node(void *key, void*data);
 
-//Insert a new node in the binary search tree
+//Create a empty bst tree
+Bstree *create_empty_tree(int (*comp)(const void*, const void *));
+
+//Create a new bst tree
+//Bstree *create_tree(KeyValuePair *data, int (*comp)(const void*, const void *));
+
+//Insert a new node at leaf node in binary search tree
 void bstree_insert(Bstree *bst, void *key, void *data);
 
 //Remove node with given key
