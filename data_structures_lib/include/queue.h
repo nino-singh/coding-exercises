@@ -11,11 +11,13 @@ typedef struct _Queue {
   List *list;
 }Queue;
 
+Queue* queue_create(size_t elementSize);
+
 //Add element to back
 void queue_add(Queue *q, void * data);
 
 //Remove element from front
-void* queue_remove(Queue *q);
+void queue_remove(Queue *q);
 
 //Get reference to head of queue
 void * queue_peek(Queue *q);

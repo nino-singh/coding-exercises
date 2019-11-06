@@ -2,6 +2,17 @@
 #include "../include/list.h"
 
 
+//Create list
+List* list_create(size_t elementSize)
+{
+  List * list = (List*)malloc(sizeof(List));
+  list->elementSize = elementSize;
+  list->listLen = 0;
+  list->head = NULL;
+  list->tail = NULL;
+  return list;
+}
+
 //Get the data of an item in the list specified by index
 void * list_get(List *list, int index)
 {
@@ -166,7 +177,7 @@ int list_search(List *list, void *data)
   {
     index = i;
   }
-  return index; 
+  return index;
 }
 
 //Return the number of elements in the list
