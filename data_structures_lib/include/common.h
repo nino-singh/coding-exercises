@@ -16,6 +16,7 @@ typedef struct KeyValuePair_t {
 void printStringNode(void * s);
 void printIntNode(void * num);
 void printKeyValueStringNode(void *kv);
+void printKeyValueIntNode(void *kv);
 int compareInts(const void * a, const void * b);
 
 #ifdef __cplusplus

@@ -21,7 +21,7 @@ typedef struct _bstNode {
 typedef struct _bstree {
   BstNode *root;
   int numNodes;
-  int (*compare)(const void*, const void*);
+  int (*compareIsGreater)(const void*, const void*);
 }Bstree;
 
 //Create a new bst node
