@@ -18,5 +18,5 @@ void printKeyValueStringNode(void *kv)
 
 int compareInts(const void * a, const void * b)
 {
-  return ((int *)a > (int *)b ? 1 : 0);
+  return (*(int *)a > *(int *)b ? 1 : 0);
 }
