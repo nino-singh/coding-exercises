@@ -67,5 +67,43 @@ int findMissingBitwise(int *arr)
   for(int i=0; i<arrSize; i++) {
     missing ^= (i ^ nums[i]);
   }
-  return missing; 
+  return missing;
+}
+
+//Reverse bits of a 32-bit unsigned integer
+//O(n) solution
+uint32_t reverseBits(uint32_t n) {
+  uint32_t res = 0;
+  int i = sizeof(n) * 8 - 1;
+
+  while(n) {
+    res |= (n&1) << i;
+    n >>= 1;
+    i--;
+  }
+  return res;
+}
+
+//Keep putting set bits of n in reverseNum result until n is zero
+// 00000110=n ---> reverseNum = 00000011
+//Left shift remaining number of bits in reverseNum, which gives you exact
+//reverse
+uint32_t reverseBitsFast(uint32_t n) {
+  uint32_t totalBits = sizeof(n)*8 - 1;
+  uint32_t reverseNum = n;
+
+  //Remove LSB from n
+  n>>=1;
+
+  while(n) {
+
+    //Remove MSB from reverseNum
+    reverseNum << 1;
+    //Add ith bit of n to LSB of reverseNum
+    reverseNum |= (n&1)
+    n >>= 1;
+    totalBits--; //keep track of number of set bits
+  }
+  reverseNum <<= totalBits;
+  return reverseNum; 
 }
