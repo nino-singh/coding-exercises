@@ -5,10 +5,10 @@
 //linked list
 static mem_block_header *base;
 
-static int free_pool_pos
+//Index position in the statically allocated array of memory
+static int free_pool_pos;
 
 //Helper functions
-static void mem_init(void);
 static void* request_mem(mem_block_header *last, size_t size);
 static void* split(mem_block_header* b, size_t allocSize);
 static void merge(void);
@@ -16,15 +16,15 @@ static void merge(void);
 /**
 * Initialize head of free list
 */
-static void mem_init(void) {
-
+void mem_init(void) {
+  return;
 }
 
 /**
 * Used to request more memory from the heap which is managed by the OS
-* In this case, we have a large statically allocated pool.
+* In this case, we have a large statically allocated array as the "heap"
 * If there are no free blocks that have been malloced and freed for reuse,
-* request more space from the allocation pool
+* request more space from this allocation pool
 */
 static void* request_mem(mem_block_header *last, size_t size)
 {
@@ -43,7 +43,7 @@ static void* split(mem_block_header* b, size_t allocSize)
 /**
 * This would get called if there is no free block that is greater than or
 * equal to the requested memory. Merge one or more blocks together to form
-* a free block to allocate
+* a free block to allocate.
 */
 static void merge(void);
 
@@ -58,6 +58,12 @@ void *mem_alloc(size_t size)
 }
 
 
+/**
+* Access the associated metadata header for this pointer and
+* and update its parameters including the free flag and its next pointer
+* Then deallocate the memory that ptr points to by simply returning the block to the
+* free list
+*/
 void mem_free(void* ptr)
 {
   return;
