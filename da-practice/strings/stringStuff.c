@@ -1,22 +1,4 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdbool.h>
-
-void reverseString(char *begin, char *end);
-void removeExtraSpaces(char *s);
-void reverseWords(char *s);
-
-int main(void) {
-  char str[] = "this is a simple string";
-  char str2[] = "this  is not  a  simple string ";
-  char str3[] = " this  one is the  worst string   ";
-
-  printf("Input: --%s--\n", str3);
-  reverseWords(str3);
-  printf("Reverse Words: --%s--\n", str3);
-
-  return 0;
-}
+#include "StringStuff.h"
 
 void reverseWords(char *s)
 {
@@ -83,4 +65,9 @@ void reverseString(char *begin, char *end)
      begin++;
      end--;
    }
+}
+
+int lenOfLongestSubstring(char *s)
+{
+  return -1; 
 }
