@@ -69,5 +69,32 @@ void reverseString(char *begin, char *end)
 
 int lenOfLongestSubstring(char *s)
 {
-  return -1; 
+  char occurrences[256] = {0};
+
+  //Length tracking unique substring
+  int currLen = 0;
+
+  //Track length of longest substring
+  int maxLen = 0;
+
+  //Loop through characters of string s,
+  for(int i = 0; i< strlen(s); i++) {
+
+    //Check to see if curr char is in occurrences, and if this is
+    //first unique character, record the index as beginning of longest substring
+    if(occurrences[s[i]] == 0) {
+      currLen++;
+      //Put curr char into occurrences
+      occurrences[s[i]]++;
+    } else {
+
+      if(currLen >= maxLen) {
+        maxLen = currLen;
+      }
+      currLen = 0;
+      memset(occurrences, 0, 256);
+    }
+  }
+
+  return maxLen;
 }
